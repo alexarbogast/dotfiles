@@ -1,0 +1,29 @@
+[font]
+size = 12
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "full"
+dynamic_padding = true
+resize_increments = true
+opacity = 0.9
+
+[window.dimensions]
+columns = 100
+lines = 28
+
