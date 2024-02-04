@@ -13,9 +13,11 @@ $git_status\
 $c\
 $rust\
 $python\
+$cmake\
 [](fg:color_blue bg:color_bg3)\
 $docker_context\
 $container\
+$conda\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
 [ ](fg:color_bg1)\
@@ -72,6 +74,7 @@ truncation_symbol = "…/"
 "Music" = "󰝚 "
 "Pictures" = " "
 "Developer" = "󰲋 "
+"Dropbox" = ""
 
 [git_branch]
 symbol = ""
@@ -97,6 +100,11 @@ symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
+[cmake]
+symbol = '△'
+stly = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
 [docker_context]
 symbol = ""
 style = "bg:color_bg3"
@@ -106,6 +114,9 @@ format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
 symbol = ""
 style = "bg:color_bg3"
 format = '[[ $symbol( $hostname) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[conda]
+format = '[[ $symbol($environment) ](fg:green bg:color_bg3)]($style)'
 
 [time]
 disabled = false
