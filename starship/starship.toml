@@ -9,12 +9,15 @@ $hostname\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
 $git_branch\
+$git_commit\
 $git_status\
 [](fg:color_aqua bg:color_blue)\
 $c\
 $rust\
 $python\
 $cmake\
+${custom.ros}\
+${custom.ros2}\
 [](fg:color_blue bg:color_bg3)\
 $docker_context\
 $container\
@@ -85,7 +88,11 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+format = '[[ $symbol $branch(:$remote_branch) ](fg:color_fg0 bg:color_aqua)]($style)'
+
+[git_commit]
+style = "bg:color_aqua"
+format = '[[\($hash$tag\) ](fg:color_fg0 bg:color_aqua)]($style)'
 
 [git_status]
 style = "bg:color_aqua"
@@ -110,6 +117,18 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 symbol = '△'
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[custom.ros]
+symbol = '󱗼'
+detect_folders = ['.catkin_tools']
+command = "echo $ROS_DISTRO"
+format = '[[ $symbol( $output) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[custom.ros2]
+symbol = '󱗼'
+when = "test $COLCON_PREFIX_PATH"
+command = "echo $ROS_DISTRO"
+format = '[[ $symbol( $output) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [docker_context]
 symbol = ""
