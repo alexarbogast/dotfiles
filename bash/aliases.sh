@@ -2,6 +2,9 @@
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias dotfiles="cd $DOTFILES_ROOT"
 
 # shortcuts
 alias dl="cd ~/Downloads"
