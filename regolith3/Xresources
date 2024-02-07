@@ -1,0 +1,20 @@
+! Theme
+regolith.wallpaper.file: /home/alex/Pictures/Wallpapers/fvzrav39iz7b1.png
+gnome.terminal.font: "FiraCode Nerd Font 12"
+
+! Window manager
+wm.client.focused.color.child_border: #dbd465
+! #e8e288
+! #7dce82
+! #ff8360
+! #3cdbd3
+! #fcdc4d
+wm.window.border.size: 3
+wm.gaps.smart: off
+wm.bar.position: top
+
+! Sway configuration
+regolith.sway.unsupported_gpu: true
+
+!regolith.look.path: /usr/share/regolith-look/gruvbox
+regolith.look.path: /usr/share/regolith-look/nord
