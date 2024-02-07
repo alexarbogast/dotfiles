@@ -1,0 +1,3 @@
+$DOTFILES_ROOT/regolith3/i3xrocks/=$HOME/.config/regolith3/i3xrocks
+$DOTFILES_ROOT/regolith3/picom/=$HOME/.config/regolith3/picom
+$DOTFILES_ROOT/regolith3/Xresources=$HOME/.config/regolith3/
