@@ -1,0 +1,4 @@
+# Show title of focused window
+[focused-window-name]
+interval=1
+short_length=10
