@@ -30,6 +30,7 @@ local plugins = {
       ensure_installed = {
         "lua",
         "markdown",
+        "markdown_inline",
         "python",
         "cpp",
         "yaml",
@@ -49,6 +50,12 @@ local plugins = {
       "TmuxNavigateRight",
       "TmuxNavigatePrevious",
     },
-  }
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
 }
 return plugins

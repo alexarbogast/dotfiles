@@ -27,6 +27,7 @@ install_ubuntu_base() {
   sudo apt install -y python3
   sudo apt install -y python3-pip
   sudo apt install -y python3-venv
+  sudo apt install -y zathura
 }
 
 install_fonts() {
