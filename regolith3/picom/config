@@ -101,9 +101,9 @@ shadow-ignore-shaped = true;
 #
 #################################
 
-inactive-opacity = 1;
-active-opacity = 1;
-frame-opacity = 1;
+inactive-opacity = 0.95;
+active-opacity = 1.0;
+frame-opacity = 0.95;
 inactive-opacity-override = false;
 
 # Dim inactive windows. (0.0 - 1.0)
@@ -128,7 +128,7 @@ blur-background-exclude = [
 # Sets the radius of rounded window corners. When > 0, the compositor will
 # round the corners of windows. Does not interact well with
 # `transparent-clipping`.
-corner-radius = 3
+corner-radius = 4
 
 #################################
 #
