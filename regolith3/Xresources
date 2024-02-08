@@ -10,6 +10,7 @@ wm.client.focused.color.child_border: #dbd465
 ! #3cdbd3
 ! #fcdc4d
 wm.window.border.size: 3
+wm.gaps.inner.size: 10
 wm.gaps.smart: off
 wm.bar.position: top
 
