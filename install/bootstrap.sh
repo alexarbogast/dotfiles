@@ -2,12 +2,17 @@
 #
 # install dotfiles
 
-cd "$(dirname "$0")/.."
+SCRIPT_NAME="$0"
+cd "$(dirname "$SCRIPT_NAME")/.."
 DOTFILES_ROOT=$(pwd -P)
 
 set -e
 echo ''
 
+batch_mode=false
+
+#-----------------------------------------------------------
+# Logging tools
 
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
@@ -26,6 +31,23 @@ fail () {
   echo ''
   exit
 }
+
+usage() {
+cat <<EOF
+$SCRIPT_NAME:
+A script for symbolically linking dotfiles to the appropriate directories.
+
+USAGE: bootstrap.sh [option] ...
+Options:
+    -b            run bootstrap in batch mode (without manual intervention)
+                  warning: overwrites all symbolic links by default.
+    -h            print this help message and exit
+
+EOF
+}
+
+#-----------------------------------------------------------
+# Symbolic linking of dotfile directories
 
 link_file () {
   local src=$1 dst=$2
@@ -54,18 +76,12 @@ link_file () {
         read -n 1 action  < /dev/tty
 
         case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
+          o ) overwrite=true;;
+          O ) overwrite_all=true;;
+          b ) backup=true;;
+          B ) backup_all=true;;
+          s ) skip=true;;
+          S ) skip_all=true;;
           * )
             ;;
         esac
@@ -103,8 +119,12 @@ link_file () {
 
 install_dotfiles () {
   info 'installing dotfiles'
-
+  
   local overwrite_all=false backup_all=false skip_all=false
+
+  if $batch_mode; then
+    overwrite_all=true
+  fi
 
   find -H "$DOTFILES_ROOT" -maxdepth 2 -name 'links.prop' -not -path '*.git*' | while read linkfile
   do
@@ -131,9 +151,28 @@ create_env_file () {
     fi
 }
 
+#-----------------------------------------------------------
+# Parse options and make links
+
+while getopts :bh flag; 
+do
+  case "${flag}" in
+  b) batch_mode=true;;
+  h) 
+     usage
+     exit 0
+     ;;
+  *)
+     usage
+     fail "Illegal option -$OPTARG"
+     ;;
+  esac
+done
+
 install_dotfiles
 create_env_file
 
 echo ''
-echo 'All installed!'
+success 'Bootstrap completed successfully!'
+exit 0
 

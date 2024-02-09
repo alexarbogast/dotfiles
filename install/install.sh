@@ -3,14 +3,34 @@
 set -e
 echo ''
 
+SCRIPT_NAME="$0"
+
+batch_mode=false
+
+#-----------------------------------------------------------
+# Logging tools
+
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  local message="${@}"
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $message\n"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  local message="${@}"
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $message\n"
   echo ''
   exit 1
+}
+
+usage() {
+cat <<EOF
+$SCRIPT_NAME
+USAGE: install.sh [option] ...
+Options:
+    -b            run install in batch mode (without manual intervention)
+    -h            print this help message and exit
+
+EOF
 }
 
 # -----------------------------------------------------------------------
@@ -27,7 +47,6 @@ install_ubuntu_base() {
   sudo apt install -y python3
   sudo apt install -y python3-pip
   sudo apt install -y python3-venv
-  sudo apt install -y zathura
 }
 
 install_fonts() {
@@ -109,19 +128,79 @@ install_miniconda() {
   conda install -y -c conda-forge conda-bash-completion
 }
 
+
 # -----------------------------------------------------------------------
 # Install
-mkdir temp && cd temp
-sudo apt update && sudo apt upgrade
 
-install_ubuntu_base
-install_fonts
-install_alacritty
-install_starship
-install_tmux
-install_neovim
-install_lazygit
-install_miniconda
+while getopts :bh flag; 
+do
+  case "${flag}" in
+  b) batch_mode=true;;
+  h) 
+     usage
+     exit 0
+     ;;
+  *)
+     usage
+     fail "Illegal option -$OPTARG"
+     ;;
+  esac
+done
+
+PACKAGE_LIST=(
+  "Ubuntu Base" "Common utility packages"
+  "Fonts" "Nerd fonts"
+  "Alacritty" "Alacritty terminal emulator"
+  "Starship" "Starhip shell prompt"
+  "Tmux" "Tmux terminal multiplexer"
+  "Neovim" "Neovim terminal editor"
+  "Lazygit" "Laygit terminal git manager"
+  "Miniconda" "Miniconda enivronment manager"
+)
+
+install_list=()
+entry_options=()
+
+for (( i = 0; i < ${#PACKAGE_LIST[@]}; i+=2 )); do
+  install_list+=("${PACKAGE_LIST[i]}")
+  entry_options+=("${PACKAGE_LIST[i]}" "${PACKAGE_LIST[i + 1]}" "ON")
+done
+
+# Prompt user in interactive mode
+if ! $batch_mode; then
+  if ! [ -x "$(command -v whiptail)" ]; then 
+    fail "whiptail must be installed for interactive installation \n" \
+         "sudo apt update && sudo apt install whiptail"
+  fi
+
+  eval install_list=(
+    $(whiptail --checklist --title "Package Install Selection" \
+      "Choose the packages to install" 0 80 0 \
+      -- "${entry_options[@]}" \
+      3>&2 2>&1 1>&3-)
+  )
+fi
+
+# Install packages
+mkdir -p temp && cd temp
+sudo apt update && sudo apt upgrade -y
+
+for pkg in "${install_list[@]}"; do
+  case "$pkg" in
+    "Ubuntu Base") install_ubuntu_base ;;
+    "Fonts")       install_fonts ;;
+    "Alacritty")   install_alacritty ;;
+    "Starship")    install_starship ;;
+    "Tmux")        install_tmux ;;
+    "Neovim")      install_neovim ;;
+    "Lazygit")     install_lazygit ;;
+    "Miniconda")   install_miniconda ;; 
+    *) 
+      echo "Unsuported package $pkg!" >&2
+      exit 1
+      ;;
+  esac
+done
 
 success "Cleaning install space"
 sudo apt autoclean
@@ -129,6 +208,6 @@ sudo apt-get clean
 sudo apt autoremove
 cd ../ && rm -rf temp
 
-success "All packages succeeded"
+success "All packages succeeded!"
 exit 0
 
