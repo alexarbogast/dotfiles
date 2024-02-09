@@ -13,6 +13,7 @@ wm.window.border.size: 3
 wm.gaps.inner.size: 10
 wm.gaps.smart: off
 wm.bar.position: top
+wm.program.compositor: /home/alex/.config/regolith3/regolith-compositor/init
 
 ! Sway configuration
 regolith.sway.unsupported_gpu: true
