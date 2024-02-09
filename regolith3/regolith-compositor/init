@@ -1,0 +1,17 @@
+#!/bin/bash
+# See https://regolith-linux.org/docs/customize/compositors/
+
+compositor_PID=$(pidof picom)
+
+while [ ! -z "$compositor_PID" ]; do
+  kill $compositor_PID
+  sleep .1
+  compositor_PID=$(pidof picom)
+done
+
+if [[ -f "$HOME/.config/regolith3/picom/config" ]]; then
+  /usr/bin/picom --experimental-backends --config "$HOME/.config/regolith3/picom/config"
+else
+  CONFIG_PATH=$(xrescat regolith.compositor.picom.config /etc/regolith/picom/config)
+  /usr/bin/picom --config "$CONFIG_PATH"
+fi
