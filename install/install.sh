@@ -98,6 +98,8 @@ install_neovim() {
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt update
   sudo apt install -y neovim
+  
+  pip3 install pyright # pyright language server
 }
 
 # -----------------------------------------------------------------------
