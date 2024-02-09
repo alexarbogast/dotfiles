@@ -203,9 +203,9 @@ for pkg in "${install_list[@]}"; do
 done
 
 success "Cleaning install space"
-sudo apt autoclean
-sudo apt-get clean
-sudo apt autoremove
+sudo apt autoclean -y
+sudo apt-get clean -y
+sudo apt autoremove -y
 cd ../ && rm -rf temp
 
 success "All packages succeeded!"
