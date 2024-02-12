@@ -21,7 +21,7 @@ style = "Regular"
 decorations = "full"
 dynamic_padding = true
 resize_increments = true
-opacity = 0.9
+opacity = 0.85
 
 [window.dimensions]
 columns = 100

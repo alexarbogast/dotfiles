@@ -13,6 +13,8 @@ local plugins = {
         "lua-language-server",
         "mypy",
         "black",
+        "rust-analyzer",
+        "clangd",
         --"ruff",
       },
     },
