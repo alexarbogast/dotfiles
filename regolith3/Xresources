@@ -1,5 +1,5 @@
 ! Theme
-regolith.wallpaper.file: ~/.config/regolith3/wallpapers/2.png
+regolith.wallpaper.file: ~/.config/regolith3/wallpapers/1.jpg
 gnome.terminal.font: "FiraCode Nerd Font 12"
 
 ! Window manager
@@ -19,4 +19,4 @@ wm.program.compositor: ~/.config/regolith3/regolith-compositor/init
 regolith.sway.unsupported_gpu: true
 
 !regolith.look.path: /usr/share/regolith-look/gruvbox
-regolith.look.path: /usr/share/regolith-look/nord
+regolith.look.path: /usr/share/regolith-look/veloura

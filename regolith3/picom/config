@@ -56,7 +56,7 @@ xrender-sync-fence = true;
 # Enabled client-side shadows on windows.
 shadow = true;
 # The blur radius for shadows. (default 12)
-shadow-radius = 5;
+shadow-radius = 10;
 # The left offset for shadows. (default -15)
 shadow-offset-x = -5;
 # The top offset for shadows. (default -15)
@@ -121,9 +121,13 @@ blur-background-exclude = [
     "window_type = 'desktop'"
 ];
 
-blur-kern = "5x5box";
-blur-method = "dual_kawase";
-blur-strength = 5;
+blur: {
+  method = "dual_kawase";
+  strength = 7;
+  background = false;
+  background-frame = false;
+  background-fixed = false;
+}
 
 #################################
 #           Corners             #
@@ -225,13 +229,15 @@ wintypes:
       shadow = true; 
     }
     dnd = { shadow = false; }
+    menu = { shadow = false; }
     popup_menu = {
-        opacity = 1.0;
-        shadow = false;
+        opacity = 0.95;
         fade = false;
     }
     dropdown_menu = {
-        opacity = 1.0;
+        opacity = 0.95;
+        shadow = false;
         fade = false;
     }
 };
+
