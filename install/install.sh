@@ -81,7 +81,7 @@ install_alacritty() {
 # Starship
 install_starship() {
   success "Installing Starship"
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
+  curl -sS https://starship.rs/install.sh | sudo sh -s -- -y
 }
 
 # -----------------------------------------------------------------------
@@ -98,8 +98,10 @@ install_neovim() {
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt update
   sudo apt install -y neovim
-  
-  pip3 install pyright # pyright language server
+ 
+  # install npm for mason lsp installs
+  curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+  sudo apt-get install -y nodejs
 }
 
 # -----------------------------------------------------------------------

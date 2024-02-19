@@ -1,21 +1,27 @@
 local plugins = {
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = {"python"},
-    opts = function()
-      return require "custom.configs.null-ls"
-    end,
-  },
-  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        -- lua
         "lua-language-server",
+        "stylua",
+
+        -- python
+        "pyright",
         "mypy",
         "black",
+
+        -- rust
         "rust-analyzer",
+
+        -- c/cpp
         "clangd",
-        --"ruff",
+        "clang-format",
+
+        -- other
+        "texlab",
+        "prettier",
       },
     },
   },
@@ -39,12 +45,12 @@ local plugins = {
         "toml",
         "bash",
         "xml",
-        "latex",
+        --"latex",
       },
     },
   },
   {
-  "christoomey/vim-tmux-navigator",
+    "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
       "TmuxNavigateDown",
@@ -57,7 +63,31 @@ local plugins = {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    config = function()
+      require "custom.configs.conform"
+    end,
+  },
+  {
+    "lervag/vimtex",
+    lazy = false,
+    init = function()
+      -- put vim.gvimtex_* settings here
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_method = "generic"
+      vim.g.vimtex_compiler_generic = {
+        command = "docker run --rm -v .:/workdir texlive/texlive latexmk " ..
+                  "-output-directory=build " ..
+                  "-aux-directory=build/aux " ..
+                  "-pdf -pvc ",
+        out_dir = "build",
+      }
+    end,
   },
 }
 return plugins

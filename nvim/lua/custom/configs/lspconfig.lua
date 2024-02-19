@@ -10,11 +10,9 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.clangd.setup({
-  on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = {"c", "cpp"},
 })
 
 lspconfig.rust_analyzer.setup({
@@ -22,5 +20,11 @@ lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   filetypes = {"rust"},
   root_dir = util.root_pattern("Cargo.toml"),
+})
+
+lspconfig.texlab.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"tex"},
 })
 
