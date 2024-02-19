@@ -14,3 +14,9 @@ alias doc="cd ~/Documents"
 # neovim
 alias vim="nvim"
 
+# latex with docker
+alias latex='docker run --rm -it -v .:/workdir texlive/texlive latexmk \
+  -quiet \
+  -output-directory=build \
+  -pdf'
+
