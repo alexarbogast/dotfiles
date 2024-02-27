@@ -41,6 +41,7 @@ install_ubuntu_base() {
   sudo apt install -y build-essential
   sudo apt install -y curl
   sudo apt install -y wget
+  sudo apt install -y unzip
   sudo apt install -y git
   sudo apt install -y fontconfig
   sudo apt install -y neofetch
