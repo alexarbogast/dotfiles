@@ -115,9 +115,10 @@ source_if_exists() {
 }
 
 source_if_exists $DOTFILES_ROOT/bash/aliases.sh
+source_if_exists $DOTFILES_ROOT/bash/local_aliases.sh
 source_if_exists $DOTFILES_ROOT/bash/miniconda.sh
 
-if command -v starship &> /dev/null 
+if command -v starship &> /dev/null
 then
   eval "$(starship init bash)"
 fi
