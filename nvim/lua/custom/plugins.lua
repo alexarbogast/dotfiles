@@ -81,7 +81,7 @@ local plugins = {
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_method = "generic"
       vim.g.vimtex_compiler_generic = {
-        command = "docker run --rm -v .:/workdir texlive/texlive latexmk " ..
+        command = "docker run --user $(id -u):$(id -g) --rm -v .:/workdir texlive/texlive latexmk " ..
                   "-output-directory=build " ..
                   "-aux-directory=build/aux " ..
                   "-pdf -pvc ",

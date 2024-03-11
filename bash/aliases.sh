@@ -15,8 +15,10 @@ alias doc="cd ~/Documents"
 alias vim="nvim"
 
 # latex with docker
-alias latex='docker run --rm -it -v .:/workdir texlive/texlive latexmk \
+alias latex='docker run --user $(id -u):$(id -g) --rm -it \
+  -v .:/workdir texlive/texlive latexmk \
   -quiet \
   -output-directory=build \
+  -aux-directory=build/aux \
   -pdf'
 
