@@ -63,6 +63,17 @@ local plugins = {
       vim.fn["mkdp#util#install"]()
     end,
   },
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_latexmk = {
+        out_dir = "build",
+        aux_dir = "build/aux",
+      }
+    end
+  }
 }
 
 return plugins
