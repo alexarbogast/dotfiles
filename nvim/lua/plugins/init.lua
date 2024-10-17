@@ -52,6 +52,7 @@ local plugins = {
         "toml",
         "bash",
         "xml",
+        "vimdoc",
   		},
   	},
   },
@@ -71,6 +72,9 @@ local plugins = {
       vim.g.vimtex_compiler_latexmk = {
         out_dir = "build",
         aux_dir = "build/aux",
+      }
+      vim.g.vimtex_quickfix_ignore_filters = {
+        [[Underfull \\hbox (badness [0-9]*) in]],
       }
     end
   }
