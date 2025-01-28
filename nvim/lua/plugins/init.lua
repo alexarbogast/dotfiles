@@ -52,6 +52,9 @@ local plugins = {
         "xml",
         "vimdoc",
   		},
+      indent = {
+        enable = false
+      }
   	},
   },
   {
