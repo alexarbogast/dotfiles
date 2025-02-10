@@ -2,13 +2,13 @@ local plugins = {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    opts = require("configs.conform"),
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
+      require("configs.lspconfig")
     end,
   },
   {
@@ -51,31 +51,33 @@ local plugins = {
         "bash",
         "xml",
         "vimdoc",
-  		},
+      },
       indent = {
-        enable = false
-      }
-  	},
+        enable = false,
+      },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = function(plugin)
-      if vim.fn.executable "npx" then
+      if vim.fn.executable("npx") then
         vim.cmd("!cd " .. plugin.dir .. " && cd app && npx --yes yarn install")
       else
-        vim.cmd [[Lazy load markdown-preview.nvim]]
+        vim.cmd([[Lazy load markdown-preview.nvim]])
         vim.fn["mkdp#util#install"]()
       end
     end,
     init = function()
-      if vim.fn.executable "npx" then vim.g.mkdp_filetypes = { "markdown" } end
+      if vim.fn.executable("npx") then
+        vim.g.mkdp_filetypes = { "markdown" }
+      end
     end,
   },
   {
     "lervag/vimtex",
-    lazy = false, -- we don't want to lazy load VimTeX
+    lazy = false, -- we don't want to lazy load vimtex
     init = function()
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_latexmk = {
@@ -85,8 +87,22 @@ local plugins = {
       vim.g.vimtex_quickfix_ignore_filters = {
         [[Underfull \\hbox (badness [0-9]*) in]],
       }
-    end
-  }
+    end,
+  },
+  {
+    "NeogitOrg/neogit",
+    cmd = {"Neogit"},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true,
+  },
+  {
+    "ntpeters/vim-better-whitespace",
+    lazy = false,
+  },
 }
 
 return plugins
