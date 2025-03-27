@@ -85,7 +85,8 @@ local plugins = {
         aux_dir = "build/aux",
       }
       vim.g.vimtex_quickfix_ignore_filters = {
-        [[Underfull \\hbox (badness [0-9]*) in]],
+        [[Underfull]],
+        [[Overfull]],
       }
     end,
   },
