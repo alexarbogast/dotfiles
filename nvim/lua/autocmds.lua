@@ -3,7 +3,7 @@ require "nvchad.autocmds"
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd({"BufEnter", "BufWinEnter"}, {
-  pattern = {"*.tex", "*.md"},
+  pattern = {"*.tex", "*.md", "*.rst"},
   callback = function()
     vim.cmd "set spell"
     vim.cmd "set textwidth=80"
