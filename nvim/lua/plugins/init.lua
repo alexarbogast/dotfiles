@@ -1,4 +1,5 @@
 local plugins = {
+  { import = "nvchad.blink.lazyspec" },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -12,7 +13,7 @@ local plugins = {
     end,
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         -- lua
