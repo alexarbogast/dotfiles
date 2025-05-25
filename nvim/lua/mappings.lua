@@ -10,7 +10,8 @@ map("i", "jk", "<ESC>")
 map("i", "<C-BS>", "<ESC>cvb")
 
 -- telescope
-map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope lsp document symbols" })
+map("n", "<leader>fs", require('telescope.builtin').lsp_document_symbols, { desc = "Telescope lsp document symbols" })
+map("n", "<leader>fr", require('telescope.builtin').lsp_references, { desc = "Telescope lsp references" })
 
 -- lsp
 map("n", "<leader>df", function()
