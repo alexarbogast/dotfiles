@@ -13,6 +13,7 @@ alias doc="cd ~/Documents"
 
 # neovim
 alias vim="nvim"
+alias nvim-custom="NVIM_APPNAME=nvim-custom nvim"
 
 # helpers
 alias reloadrc="source ~/.bashrc"
