@@ -13,6 +13,7 @@ alias doc="cd ~/Documents"
 
 # neovim
 alias vim="nvim"
+alias nvim-custom="NVIM_APPNAME=nvim-custom nvim"
 
 # latex with docker
 alias latex='docker run --user $(id -u):$(id -g) --rm -it \
