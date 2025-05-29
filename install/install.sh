@@ -54,13 +54,13 @@ install_fonts() {
   success "Installing fonts"
   local fonts=(
     FiraCode
-  ) 
-  
+  )
+
   local fonts_dir="${HOME}/.local/share/fonts"
   echo $fonts_dir
   if [[ ! -d "$fonts_dir" ]]; then
     mkdir -p "$fonts_dir"
-  fi 
+  fi
 
   for font in "${fonts[@]}"; do
     zip_file="${font}.tar.xz"
@@ -75,7 +75,7 @@ install_alacritty() {
   success "Installing Alacritty"
   sudo add-apt-repository -y ppa:aslatter/ppa
   sudo apt update
-  sudo apt install -y alacritty 
+  sudo apt install -y alacritty
 }
 
 # -----------------------------------------------------------------------
@@ -89,7 +89,10 @@ install_starship() {
 # Tmux
 install_tmux() {
   success  "Installing Tmux"
-  sudo apt install -y tmux 
+  sudo apt install -y tmux
+
+  # install tmux plugin manager
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 # -----------------------------------------------------------------------
@@ -99,7 +102,7 @@ install_neovim() {
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt update
   sudo apt install -y neovim
- 
+
   # install npm for mason lsp installs
   curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
   sudo apt-get install -y nodejs
@@ -112,14 +115,14 @@ install_lazygit() {
   LAZYGIT_VERSION=$(curl -s \
     "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
     | grep -Po '"tag_name": "v\K[^"]*')
- 
+
   local release_file="lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   curl -Lo lazygit.tar.gz \
     "https://github.com/jesseduffield/lazygit/releases/latest/download/$release_file"
 
-  tar -xf lazygit.tar.gz lazygit 
+  tar -xf lazygit.tar.gz lazygit
   sudo install lazygit /usr/local/bin
-} 
+}
 
 # -----------------------------------------------------------------------
 # Miniconda
@@ -127,7 +130,7 @@ install_miniconda() {
   success "Installing Miniconda"
   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   bash miniconda.sh -b -u -p $HOME/miniconda
-  
+
   eval "$($HOME/miniconda/bin/conda shell.bash hook)"
   conda config --set auto_activate_base false
   conda install -y -c conda-forge conda-bash-completion
@@ -137,11 +140,11 @@ install_miniconda() {
 # -----------------------------------------------------------------------
 # Install
 
-while getopts :bh flag; 
+while getopts :bh flag;
 do
   case "${flag}" in
   b) batch_mode=true;;
-  h) 
+  h)
      usage
      exit 0
      ;;
@@ -173,7 +176,7 @@ done
 
 # Prompt user in interactive mode
 if ! $batch_mode; then
-  if ! [ -x "$(command -v whiptail)" ]; then 
+  if ! [ -x "$(command -v whiptail)" ]; then
     fail "whiptail must be installed for interactive installation \n" \
          "sudo apt update && sudo apt install whiptail"
   fi
@@ -199,8 +202,8 @@ for pkg in "${install_list[@]}"; do
     "Tmux")        install_tmux ;;
     "Neovim")      install_neovim ;;
     "Lazygit")     install_lazygit ;;
-    "Miniconda")   install_miniconda ;; 
-    *) 
+    "Miniconda")   install_miniconda ;;
+    *)
       echo "Unsuported package $pkg!" >&2
       exit 1
       ;;
