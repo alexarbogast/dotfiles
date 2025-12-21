@@ -16,6 +16,9 @@ map("n", "<c-k>", "<cmd>:TmuxNavigateUp<cr>")
 map("n", "<c-l>", "<cmd>:TmuxNavigateRight<cr>")
 map("n", "<c-\\>", "<cmd>:TmuxNavigatePrevious<cr>")
 
+-- cpp
+map("n", "<leader>cs", "<cmd>LspClangdSwitchSourceHeader<CR>", { desc = "Alternate source/header" })
+
 -- lsp
 map("n", "<leader>df", function()
   vim.diagnostic.open_float()
