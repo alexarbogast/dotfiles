@@ -43,10 +43,14 @@ sudo apt install whiptail
 
 ```
 ./install/install.sh
+A script for installing common package groups.
+
 USAGE: install.sh [option] ...
 Options:
-    -b            run install in batch mode (without manual intervention)
-    -h            print this help message and exit
+    -b                Run install in batch mode (no UI)
+    --exclude <pkg>   Exclude packages
+    --list            List available software packages
+    -h                Show this help
 ```
 
 ### Installed Applications
