@@ -1,0 +1,15 @@
+services:
+  ubuntu_dotfiles:
+    image: ubuntu:dotfiles
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dotfiles
+    runtime: nvidia
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    user: ubuntu
+    environment:
+      - USER=ubuntu
+    volumes:
+      - ~/.dotfiles/:/home/ubuntu/.dotfiles/

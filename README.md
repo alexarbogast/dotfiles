@@ -82,6 +82,11 @@ is ignored in the repo diff.
 Custom executables and scripts can be added to the users `~/bin` directory that
 is added to `PATH` if it exists.
 
+## Docker
+
+See the [README.md](./docker/README.md) in the `docker` folder for info on
+testing the dotfiles in Docker.
+
 ## Regolith
 
 The [regolith branch](https://github.com/alexarbogast/dotfiles/tree/regolith)
