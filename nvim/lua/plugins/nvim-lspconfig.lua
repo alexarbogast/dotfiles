@@ -3,6 +3,15 @@ return {
   config = function()
     require("nvchad.configs.lspconfig").defaults()
     -- require("configs.lspconfig")
+    --
+
+    -- Configure clangd BEFORE enabling
+    vim.lsp.config("clangd", {
+      cmd = {
+        "clangd",
+        "--header-insertion=never",
+      },
+    })
 
     local servers = {
       "pyright",
@@ -12,6 +21,5 @@ return {
     }
     -- local nvlsp = require("nvchad.configs.lspconfig")
     vim.lsp.enable(servers)
-
   end,
 }
