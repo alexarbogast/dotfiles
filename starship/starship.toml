@@ -18,6 +18,7 @@ $python\
 $cmake\
 ${custom.ros}\
 ${custom.ros2}\
+$nix_shell\
 [](fg:color_blue bg:color_bg3)\
 $docker_context\
 $container\
@@ -113,7 +114,6 @@ symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version)( \($virtualenv\)) ](fg:color_fg0 bg:color_blue)]($style)'
 
-
 [cmake]
 symbol = '△'
 style = "bg:color_blue"
@@ -130,6 +130,11 @@ symbol = '󱗼'
 when = "test $COLCON_PREFIX_PATH"
 command = "echo $ROS_DISTRO"
 format = '[[ $symbol( $output) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[nix_shell]
+symbol = "󱄅"
+style = "bg:color_blue"
+format = '[[ $symbol( $state)( \($name\)) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [docker_context]
 symbol = ""
