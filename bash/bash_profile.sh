@@ -128,3 +128,7 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+# terminal navigation
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
