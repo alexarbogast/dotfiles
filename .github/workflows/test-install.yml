@@ -1,4 +1,4 @@
-name: Test Dotfiles Install
+name: Install
 
 on:
   push:
