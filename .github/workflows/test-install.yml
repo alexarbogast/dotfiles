@@ -1,0 +1,54 @@
+name: Test Dotfiles Install
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  # -------------------------------------------------------
+  # Job 1: Test bootstrap (symlink creation)
+  # -------------------------------------------------------
+  bootstrap:
+    name: Bootstrap (symlinks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dotfiles
+        uses: actions/checkout@v4
+        with:
+          path: dotfiles
+
+      - name: Move dotfiles to ~/.dotfiles
+        run: mv $GITHUB_WORKSPACE/dotfiles $HOME/.dotfiles
+
+      - name: Run bootstrap in batch mode
+        run: |
+          cd ~/.dotfiles
+          ./install/bootstrap.sh -b
+
+  # -------------------------------------------------------
+  # Job 2: Test install.sh (package installs)
+  # -------------------------------------------------------
+  install:
+    name: Install packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dotfiles
+        uses: actions/checkout@v4
+        with:
+          path: dotfiles
+
+      - name: Move dotfiles to ~/.dotfiles
+        run: mv $GITHUB_WORKSPACE/dotfiles $HOME/.dotfiles
+
+      - name: Run install in batch mode (subset)
+        run: |
+          cd ~/.dotfiles
+          sudo apt-get update -qq
+          ./install/install.sh -b \
+            --exclude miniconda \
+            --exclude alacritty \
+            --exclude fonts
+        env:
+          DEBIAN_FRONTEND: noninteractive
