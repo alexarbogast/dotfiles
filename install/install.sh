@@ -41,6 +41,7 @@ declare -A PACKAGES=(
   ["alacritty"]="Alacritty terminal emulator"
   ["starship"]="Starship shell prompt"
   ["tmux"]="Tmux terminal multiplexer"
+  ["rust"]="Rust toolchain (rustup)"
   ["neovim"]="Neovim terminal editor"
   ["lazygit"]="Lazygit terminal git manager"
   ["miniconda"]="Miniconda environment manager"
@@ -104,15 +105,31 @@ install_tmux() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+install_rust() {
+  success "Installing Rust toolchain"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y --no-modify-path
+
+  # Source cargo env for the rest of this script session
+  source "${HOME}/.cargo/env"
+}
+
 install_neovim() {
   success "Installing Neovim"
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt update
-  sudo apt install -y neovim
+  sudo apt install -y neovim libclang-dev
 
   # install npm for mason lsp installs
   curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
   sudo apt-get install -y nodejs
+
+  # install treesitter cli (https://nvchad.com/docs/quickstart/install)
+  # ensure cargo is available — install rust if not already present
+  if ! command -v cargo &> /dev/null; then
+    install_rust
+  fi
+  cargo install tree-sitter-cli
 }
 
 install_lazygit() {

@@ -82,6 +82,18 @@ is ignored in the repo diff.
 Custom executables and scripts can be added to the users `~/bin` directory that
 is added to `PATH` if it exists.
 
+## Neovim
+
+The neovim configuration is built on top of [nvchad](https://nvchad.com/). Two
+commands are need to install the proper treesitter parsers and mason packages.
+```
+nvim
+
+# Run in neovim
+:MasonInstallAll
+:TSInstallAll
+```
+
 ## Docker
 
 See the [README.md](./docker/README.md) in the `docker` folder for info on
