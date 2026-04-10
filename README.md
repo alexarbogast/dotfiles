@@ -1,5 +1,7 @@
 # Dotfiles
 
+[![Install](https://github.com/alexarbogast/dotfiles/actions/workflows/test-install.yml/badge.svg)](https://github.com/alexarbogast/dotfiles/actions/workflows/test-install.yml)
+
 ## Installation
 
 Clone the repository into the user's home directory.
