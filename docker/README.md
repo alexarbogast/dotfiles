@@ -39,4 +39,5 @@ The pre-built docker image (built on Ubuntu 24.04) can be used with
 
 ```bash
 docker pull ghcr.io/alexarbogast/dotfiles:latest
+docker run -it --rm -u ubuntu ubuntu:dotfiles bash
 ```

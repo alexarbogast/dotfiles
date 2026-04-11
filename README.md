@@ -105,6 +105,7 @@ The pre-built docker image can be pulled from github.
 
 ```bash
 docker pull ghcr.io/alexarbogast/dotfiles:latest
+docker run -it --rm -u ubuntu ubuntu:dotfiles bash
 ```
 
 ## Regolith
