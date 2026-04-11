@@ -32,3 +32,11 @@ source ~/.bashrc
 ```
 
 Try `neofetch` or `nvim`.
+
+## Pre-built Image
+
+The pre-built docker image (built on Ubuntu 24.04) can be used with
+
+```bash
+docker pull ghcr.io/alexarbogast/dotfiles:latest
+```

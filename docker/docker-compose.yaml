@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        INSTALL_DOTFILES: false
     container_name: dotfiles
     runtime: nvidia
     stdin_open: true # docker run -i

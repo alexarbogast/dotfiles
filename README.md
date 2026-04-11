@@ -101,6 +101,12 @@ nvim
 See the [README.md](./docker/README.md) in the `docker` folder for info on
 testing the dotfiles in Docker.
 
+The pre-built docker image can be pulled from github.
+
+```bash
+docker pull ghcr.io/alexarbogast/dotfiles:latest
+```
+
 ## Regolith
 
 The [regolith branch](https://github.com/alexarbogast/dotfiles/tree/regolith)
