@@ -115,6 +115,7 @@ source_if_exists() {
 }
 
 source_if_exists $DOTFILES_ROOT/bash/aliases.sh
+source_if_exists $DOTFILES_ROOT/bash/functions.sh
 source_if_exists $DOTFILES_ROOT/bash/local_aliases.sh
 source_if_exists $DOTFILES_ROOT/bash/miniconda.sh
 source_if_exists $HOME/.cargo/env

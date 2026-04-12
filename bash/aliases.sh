@@ -14,6 +14,9 @@ alias doc="cd ~/Documents"
 # neovim
 alias vim="nvim"
 
+# helpers
+alias reloadrc="source ~/.bashrc"
+
 # latex with docker
 alias latex='docker run --user $(id -u):$(id -g) --rm -it \
   -v .:/workdir texlive/texlive latexmk \
