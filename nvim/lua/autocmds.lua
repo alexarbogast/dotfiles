@@ -6,6 +6,6 @@ autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.tex", "*.md", "*.rst"},
   callback = function()
     vim.cmd "set spell"
-    vim.cmd "set textwidth=80"
+    -- vim.cmd "set textwidth=80"
   end,
 })
