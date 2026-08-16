@@ -5,6 +5,7 @@ return {
       "lua",
       "markdown",
       "markdown_inline",
+      "nix",
       "python",
       "cpp",
       "yaml",

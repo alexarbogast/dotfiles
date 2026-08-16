@@ -1,5 +1,20 @@
+hm-switch() {
+  case "$USER" in
+    alex)
+      home-manager switch --flake "$HOME/.dotfiles#alex-home" "$@"
+      ;;
+    owa)
+      home-manager switch --flake "$HOME/.dotfiles#owa-home" "$@"
+      ;;
+    *)
+      echo "No Home Manager configuration for user '$USER'" >&2
+      return 1
+      ;;
+  esac
+}
+
 local_aliases() {
-  local file="$DOTFILES_ROOT/bash/local_aliases.sh"
+  local file="$HOME/.config/bash/local_aliases.sh"
 
   if [[ ! -f "$file" ]]; then
     mkdir -p "$(dirname "$file")"
@@ -29,3 +44,9 @@ nvim-reset() {
         echo "Cancelled."
     fi
 }
+
+build_compile_commands() {
+    cmake -B build . --fresh -DCMAKE_EXPORT_COMPIPLE_COMMANDS=1
+    cp ./compile_commands.json .
+}
+alias bcc=build_compile_commands
